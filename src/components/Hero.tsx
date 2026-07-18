@@ -18,7 +18,7 @@ const slideUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.7, ease: [] as any },
   },
 }
 
@@ -139,7 +139,7 @@ export default function Hero({ onOpenModal }: { onOpenModal?: () => void }) {
                     transition={{
                       duration: 1.2,
                       delay: 0.9,
-                      ease: [0.25, 0.46, 0.45, 0.94],
+                      ease: [] as any,
                     }}
                   />
                 </div>

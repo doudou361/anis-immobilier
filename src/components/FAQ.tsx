@@ -30,7 +30,7 @@ function AccordionItem({ question, answer, isOpen, onToggle }: AccordionItemProp
         </span>
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 0.3, ease: [] as any }}
           className="flex-shrink-0 text-text-muted"
         >
           <ChevronDown size={20} />
@@ -44,7 +44,7 @@ function AccordionItem({ question, answer, isOpen, onToggle }: AccordionItemProp
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.3, ease: [] as any }}
             className="overflow-hidden"
           >
             <div className="px-6 pb-5 pt-0">
