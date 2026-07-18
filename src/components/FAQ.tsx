@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import faqImg from '../assets/images/faq-interior.png'
 
 interface AccordionItemProps {
@@ -61,33 +62,28 @@ function AccordionItem({ question, answer, isOpen, onToggle }: AccordionItemProp
   )
 }
 
-const faqItems = [
-  {
-    /* TODO: PLACEHOLDER — 'homely' wording per reference transcription */
-    question: 'Can I personalize my homely?',
-    answer:
-      'This is a placeholder answer that would contain detailed information about the property and services offered by Horizon Grove.',
-  },
-  {
-    /* TODO: PLACEHOLDER — 'homely' wording per reference transcription */
-    question: 'Where can I find homely?',
-    answer:
-      'This is a placeholder answer that would contain detailed information about the property and services offered by Horizon Grove.',
-  },
-  {
-    /* TODO: PLACEHOLDER — 'homely' wording per reference transcription */
-    question: 'What steps to buy a homely?',
-    answer:
-      'This is a placeholder answer that would contain detailed information about the property and services offered by Horizon Grove.',
-  },
-]
-
 export default function FAQ() {
+  const { t } = useTranslation()
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   const handleToggle = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index))
   }
+
+  const faqItems = [
+    {
+      question: t('faq.q1'),
+      answer: t('faq.a1'),
+    },
+    {
+      question: t('faq.q2'),
+      answer: t('faq.a2'),
+    },
+    {
+      question: t('faq.q3'),
+      answer: t('faq.a3'),
+    },
+  ]
 
   return (
     <section className="bg-bg-alt section-spacing">
@@ -108,10 +104,9 @@ export default function FAQ() {
           {/* Right — Content (~60%) */}
           <div className="w-full lg:w-[60%] flex flex-col justify-center">
             {/* Eyebrow */}
-            <span className="eyebrow mb-4">🏠 FAQs</span>
+            <span className="eyebrow mb-4">{t('faq.title')}</span>
 
             {/* Headline */}
-            {/* TODO: PLACEHOLDER — 'homely' appears verbatim in reference; likely source template product name, not Horizon Grove voice. Flag for rewrite. */}
             <h2
               className="text-text-primary mb-4"
               style={{
@@ -122,11 +117,10 @@ export default function FAQ() {
                 letterSpacing: '-0.02em',
               }}
             >
-              Everything about homely
+              {t('faq.heading')}
             </h2>
 
             {/* Copy */}
-            {/* TODO: PLACEHOLDER — This paragraph duplicates the Categories section copy in the reference; likely unedited placeholder text. */}
             <p
               className="text-text-muted mb-8"
               style={{
@@ -136,9 +130,7 @@ export default function FAQ() {
                 maxWidth: '520px',
               }}
             >
-              We know that buying, selling, or investing in real estate can be
-              overwhelming. Here are some frequently asked questions to help
-              guide you through the process.
+              {t('faq.description')}
             </p>
 
             {/* Accordion */}

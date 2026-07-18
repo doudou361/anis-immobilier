@@ -1,17 +1,24 @@
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 interface EmailFormValues {
   email: string
 }
 
-const navLinks = ['Home', 'Categories', 'Testimonials', 'Blog']
-
 export default function Footer() {
   const { register, handleSubmit } = useForm<EmailFormValues>()
+  const { t } = useTranslation()
 
   const onSubmit = (_data: EmailFormValues) => {
     // No submit endpoint — validation stub only
   }
+
+  const navLinks = [
+    { id: 'home', label: t('footer.home') },
+    { id: 'categories', label: t('footer.categories') },
+    { id: 'testimonials', label: t('footer.testimonials') },
+    { id: 'blog', label: t('footer.blog') },
+  ]
 
   return (
     <footer
@@ -21,7 +28,6 @@ export default function Footer() {
       <div className="container-main">
         {/* ── Top section: headline + subtext ── */}
         <div className="text-center mb-12">
-          {/* NOTE: Headline partially cropped in reference ('...ntact us today'), reconstructed */}
           <h2
             className="text-white mb-4"
             style={{
@@ -32,7 +38,7 @@ export default function Footer() {
               letterSpacing: '-0.02em',
             }}
           >
-            Contact us today
+            {t('footer.contact')}
           </h2>
           <p
             style={{
@@ -42,7 +48,7 @@ export default function Footer() {
               color: 'rgba(255, 255, 255, 0.6)',
             }}
           >
-            Get in touch with our team to find your perfect home.
+            {t('footer.description')}
           </p>
         </div>
 
@@ -54,7 +60,7 @@ export default function Footer() {
         >
           <input
             type="email"
-            placeholder="Enter your email"
+            placeholder={t('footer.emailPlaceholder')}
             {...register('email', {
               required: true,
               pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -70,7 +76,7 @@ export default function Footer() {
             }}
           />
           <button type="submit" className="btn-pill btn-pill-light flex-shrink-0 rounded-full">
-            Subscribe
+            {t('footer.subscribe')}
           </button>
         </form>
 
@@ -85,8 +91,7 @@ export default function Footer() {
             marginRight: 'auto',
           }}
         >
-          By subscribing, you agree to receive our promotional emails. You can
-          unsubscribe at any time.
+          {t('footer.legal')}
         </p>
 
         {/* ── Divider ── */}
@@ -97,25 +102,37 @@ export default function Footer() {
 
         {/* ── Bottom row ── */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Left — Wordmark */}
-          <span
-            className="text-white flex-shrink-0"
-            style={{
-              fontFamily: 'var(--font-heading)',
-              fontWeight: 700,
-              fontSize: '20px',
-              letterSpacing: '-0.02em',
-            }}
-          >
-            Horizon Grove
-          </span>
+          {/* Left — Wordmark, Location & Phone */}
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <span
+              className="text-white flex-shrink-0"
+              style={{
+                fontFamily: 'var(--font-heading)',
+                fontWeight: 700,
+                fontSize: '20px',
+                letterSpacing: '-0.02em',
+              }}
+            >
+              {t('hero.name')}
+            </span>
+            <div
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '14px',
+                color: 'rgba(255, 255, 255, 0.6)',
+              }}
+            >
+              {t('footer.location')} <br />
+              +2135 78 24 87 13
+            </div>
+          </div>
 
           {/* Center — Nav links */}
           <nav className="flex items-center gap-8">
             {navLinks.map((link) => (
               <a
-                key={link}
-                href={`#${link.toLowerCase()}`}
+                key={link.id}
+                href={`#${link.id}`}
                 className="transition-colors duration-300"
                 style={{
                   fontFamily: 'var(--font-body)',
@@ -128,7 +145,7 @@ export default function Footer() {
                   (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)')
                 }
               >
-                {link}
+                {link.label}
               </a>
             ))}
           </nav>

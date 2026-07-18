@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import marketHouse from '../assets/images/market-house.png'
 
 /* NOTE: Headline reconstructed from partially cropped reference — not directly observed */
@@ -21,6 +22,8 @@ const stagger = {
 }
 
 export default function MarketPerformance() {
+  const { t } = useTranslation()
+
   return (
     <section className="section-spacing bg-bg-base">
       <div className="container-main">
@@ -37,19 +40,15 @@ export default function MarketPerformance() {
               variants={fadeUp}
               className="text-3xl md:text-4xl lg:text-[40px] leading-tight tracking-tight"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 700 }}
-            >
-              Market Performance
-              <br />
-              &amp; Overview
-            </motion.h2>
+              dangerouslySetInnerHTML={{ __html: t('market.title') }}
+            />
 
             <motion.p
               variants={fadeUp}
               className="mt-4 text-base leading-relaxed max-w-lg"
               style={{ color: 'var(--color-text-muted)' }}
             >
-              Real-time data and in-depth analysis of local real estate trends to
-              support smarter decisions for buyers, sellers, and investors
+              {t('market.description')}
             </motion.p>
 
             {/* Stat Cards */}
@@ -70,13 +69,13 @@ export default function MarketPerformance() {
                     lineHeight: 1.1,
                   }}
                 >
-                  18 days
+                  {t('market.stat1.value')}
                 </span>
                 <span
                   className="mt-3 text-sm"
                   style={{ color: 'rgba(255, 255, 255, 0.55)', fontSize: '14px' }}
                 >
-                  Average on market
+                  {t('market.stat1.label')}
                 </span>
               </div>
 
@@ -93,13 +92,13 @@ export default function MarketPerformance() {
                     lineHeight: 1.1,
                   }}
                 >
-                  98%
+                  {t('market.stat2.value')}
                 </span>
                 <span
                   className="mt-3 text-sm"
                   style={{ color: 'var(--color-text-muted)', fontSize: '14px' }}
                 >
-                  Customer Satisfaction
+                  {t('market.stat2.label')}
                 </span>
               </div>
             </motion.div>

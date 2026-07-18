@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import propertyImg from '../assets/images/property-card.png'
 
 /* TODO: PLACEHOLDER — $58,000 price is likely template data; flag for real content */
@@ -52,6 +53,7 @@ const cardVariants = {
 }
 
 export default function PopularArea() {
+  const { t } = useTranslation()
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const scroll = (direction: 'left' | 'right') => {
@@ -72,7 +74,7 @@ export default function PopularArea() {
               className="text-3xl md:text-4xl lg:text-[40px] leading-tight tracking-tight"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 700 }}
             >
-              Popular In your Area
+              {t('popular.title')}
             </h2>
           </div>
 
@@ -82,7 +84,7 @@ export default function PopularArea() {
               className="text-base"
               style={{ color: 'var(--color-text-muted)' }}
             >
-              The most viewed and favorited homes in the past day.
+              {t('popular.subtitle')}
             </p>
             <div className="flex items-center gap-3">
               <button
@@ -148,7 +150,7 @@ export default function PopularArea() {
                     className="mt-1 text-sm"
                     style={{ color: 'var(--color-text-muted)', fontSize: '14px' }}
                   >
-                    {property.beds} beds · {property.baths} baths · {property.sqft} sq ft
+                    {t('popular.beds', { beds: property.beds })} · {t('popular.baths', { baths: property.baths })} · {t('popular.sqft', { sqft: property.sqft })}
                   </p>
 
                   <p

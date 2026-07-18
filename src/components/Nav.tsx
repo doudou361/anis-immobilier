@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Menu, X } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
-const navLinks = ['About', 'Features', 'Offers', 'Apartments'] as const
+const navLinks = ['about', 'features', 'offers', 'apartments'] as const
 
-export default function Nav() {
+export default function Nav({ onOpenModal }: { onOpenModal?: () => void }) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { t, i18n } = useTranslation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,12 +55,12 @@ export default function Nav() {
             {navLinks.map((link) => (
               <li key={link}>
                 <a
-                  href={`#${link.toLowerCase()}`}
+                  href={`#${link}`}
                   className={`text-[13px] font-medium uppercase tracking-[0.08em] transition-colors duration-300 hover:opacity-80 ${
                     scrolled ? 'text-text-primary' : 'text-white'
                   }`}
                 >
-                  {link}
+                  {t(`nav.${link}`)}
                 </a>
               </li>
             ))}
@@ -66,18 +68,28 @@ export default function Nav() {
 
           {/* ── Right side ── */}
           <div className="flex items-center gap-4">
+            {/* Language switcher */}
+            <button
+              onClick={() => i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr')}
+              className={`text-[13px] font-medium tracking-widest transition-colors duration-300 ${
+                scrolled ? 'text-text-primary' : 'text-white'
+              }`}
+            >
+              {i18n.language === 'fr' ? 'EN' : 'FR'}
+            </button>
+
             {/* CTA pill (desktop) */}
-            <a
-              href="#consultation"
+            <button
+              onClick={onOpenModal}
               className={`btn-pill hidden lg:inline-flex items-center gap-2 text-[13px] transition-all duration-300 ${
                 scrolled
                   ? 'bg-surface-dark text-white'
                   : 'bg-white/10 text-white backdrop-blur-sm border border-white/20'
               }`}
             >
-              Get a Consultation
+              {t('nav.consultation')}
               <ChevronDown className="w-4 h-4" />
-            </a>
+            </button>
 
             {/* Hamburger (mobile < 1024px) */}
             <button
@@ -139,11 +151,11 @@ export default function Nav() {
                     transition={{ delay: 0.05 * i, duration: 0.3 }}
                   >
                     <a
-                      href={`#${link.toLowerCase()}`}
+                      href={`#${link}`}
                       onClick={() => setMobileOpen(false)}
                       className="block py-3 text-[13px] font-medium uppercase tracking-[0.08em] text-text-primary hover:text-text-muted transition-colors"
                     >
-                      {link}
+                      {t(`nav.${link}`)}
                     </a>
                   </motion.li>
                 ))}
@@ -151,14 +163,16 @@ export default function Nav() {
 
               {/* CTA */}
               <div className="mt-auto px-6 pb-8">
-                <a
-                  href="#consultation"
-                  onClick={() => setMobileOpen(false)}
+                <button
+                  onClick={() => {
+                    setMobileOpen(false)
+                    if (onOpenModal) onOpenModal()
+                  }}
                   className="btn-pill btn-pill-dark w-full justify-center"
                 >
-                  Get a Consultation
+                  {t('nav.consultation')}
                   <ChevronDown className="w-4 h-4" />
-                </a>
+                </button>
               </div>
             </motion.div>
           </>

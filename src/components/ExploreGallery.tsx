@@ -1,12 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import luxuryVilla from '../assets/images/luxury-villa.png';
 import villaRow from '../assets/images/villa-row.png';
 import buildingExterior from '../assets/images/building-exterior.png';
 import officeInterior from '../assets/images/office-interior.png';
 
 const ExploreGallery = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto w-full bg-[var(--color-bg-base)]">
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
@@ -15,16 +18,16 @@ const ExploreGallery = () => {
           {/* Top Text Block */}
           <div className="flex flex-col items-start gap-6 pt-4">
             <span className="uppercase tracking-widest text-xs font-semibold text-[var(--color-text-primary)]">
-              Categories
+              {t('categories.title')}
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-[var(--color-text-primary)] leading-tight font-['General_Sans'] tracking-tight">
-              Explore best properties with expert services.
+              {t('categories.heading')}
             </h2>
             <p className="text-lg text-[var(--color-text-muted)] font-['Inter'] leading-relaxed max-w-md">
-              Discover a wide range of premium properties tailored to your lifestyle. Our expert team is here to guide you every step of the way.
+              {t('categories.description')}
             </p>
             <button className="mt-4 flex items-center gap-3 bg-[var(--color-surface-dark)] text-white px-8 py-4 rounded-full font-medium hover:bg-black transition-colors duration-300">
-              View properties
+              {t('categories.viewProperties')}
               <ArrowRight className="w-5 h-5" />
             </button>
           </div>
@@ -38,7 +41,7 @@ const ExploreGallery = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
             <div className="absolute bottom-8 left-8">
-              <h3 className="text-3xl font-bold text-white font-['General_Sans']">Luxury villas</h3>
+              <h3 className="text-3xl font-bold text-white font-['General_Sans']">{t('categories.luxuryVillas')}</h3>
             </div>
           </div>
         </div>

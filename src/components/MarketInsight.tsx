@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import blogImg from '../assets/images/blog-card.png'
 
 /* NOTE: Headline reconstructed from partially cropped reference — not directly observed */
@@ -7,26 +8,23 @@ const articles = [
   {
     id: 1,
     image: blogImg,
-    title: '5 tips for first time home buyers in today\'s market',
-    author: 'By Jessica Park',
-    date: 'March 15, 2025',
-    readTime: '5 min read',
+    title: 'insight.card1.title',
+    author: 'insight.card1.author',
+    meta: 'insight.card1.meta',
   },
   {
     id: 2,
     image: blogImg,
-    title: '5 tips for first time home buyers in today\'s market',
-    author: 'By Jessica Park',
-    date: 'March 15, 2025',
-    readTime: '5 min read',
+    title: 'insight.card1.title',
+    author: 'insight.card1.author',
+    meta: 'insight.card1.meta',
   },
   {
     id: 3,
     image: blogImg,
-    title: '5 tips for first time home buyers in today\'s market',
-    author: 'By Jessica Park',
-    date: 'March 15, 2025',
-    readTime: '5 min read',
+    title: 'insight.card1.title',
+    author: 'insight.card1.author',
+    meta: 'insight.card1.meta',
   },
 ]
 
@@ -44,6 +42,8 @@ const cardVariants = {
 }
 
 export default function MarketInsight() {
+  const { t } = useTranslation()
+
   return (
     <section className="section-spacing bg-bg-base">
       <div className="container-main">
@@ -53,7 +53,7 @@ export default function MarketInsight() {
             className="text-3xl md:text-4xl lg:text-[40px] leading-tight tracking-tight"
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 700 }}
           >
-            Market Insight
+            {t('insight.title')}
           </h2>
 
           <a
@@ -65,7 +65,7 @@ export default function MarketInsight() {
               textDecorationColor: 'var(--color-text-muted)',
             }}
           >
-            View all
+            {t('insight.viewAll')}
           </a>
         </div>
 
@@ -87,7 +87,7 @@ export default function MarketInsight() {
               >
                 <img
                   src={article.image}
-                  alt={article.title}
+                  alt={t(article.title)}
                   className="w-full aspect-video object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                 />
               </div>
@@ -103,21 +103,21 @@ export default function MarketInsight() {
                     color: 'var(--color-text-primary)',
                   }}
                 >
-                  {article.title}
+                  {t(article.title)}
                 </h3>
 
                 <p
                   className="mt-2"
                   style={{ color: 'var(--color-text-muted)', fontSize: '14px' }}
                 >
-                  {article.author}
+                  {t(article.author)}
                 </p>
 
                 <p
                   className="mt-1"
                   style={{ color: 'var(--color-text-muted)', fontSize: '13px' }}
                 >
-                  {article.date} · {article.readTime}
+                  {t(article.meta)}
                 </p>
               </div>
             </motion.article>

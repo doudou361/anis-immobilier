@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import heroImg from '../assets/images/hero.png'
 
 /* ── Animation variants ── */
@@ -30,7 +31,9 @@ const fadeIn = {
   },
 }
 
-export default function Hero() {
+export default function Hero({ onOpenModal }: { onOpenModal?: () => void }) {
+  const { t } = useTranslation()
+
   return (
     <section className="relative min-h-screen max-lg:min-h-[80vh] w-full overflow-hidden rounded-b-[40px]">
       {/* ── Background image ── */}
@@ -57,26 +60,25 @@ export default function Hero() {
               variants={slideUp}
               className="font-[var(--font-heading)] text-[32px] lg:text-[56px] font-extrabold leading-[1.08] tracking-tight text-white"
             >
-              Welcome to
+              {t('hero.welcome')}
               <br />
-              Horizon Grove
+              {t('hero.name')}
             </motion.h1>
 
             <motion.p
               variants={slideUp}
               className="mt-5 lg:mt-6 text-white/80 text-base lg:text-lg leading-relaxed max-w-lg"
             >
-              A modern residential experience where architecture meets nature,
-              designed for elevated living beyond the ordinary.
+              {t('hero.description')}
             </motion.p>
 
             <motion.div variants={slideUp} className="mt-8">
-              <a
-                href="#apartments"
+              <button
+                onClick={onOpenModal}
                 className="btn-pill btn-pill-light"
               >
-                View Apartments
-              </a>
+                {t('hero.viewApartments')}
+              </button>
             </motion.div>
           </motion.div>
 
@@ -90,10 +92,10 @@ export default function Hero() {
               className="glass-card px-5 py-4 lg:px-6 lg:py-5"
             >
               <span className="block text-[12px] font-medium uppercase tracking-[0.08em] text-text-muted">
-                Availability
+                {t('hero.availability')}
               </span>
               <span className="block mt-1 text-[15px] lg:text-base font-semibold text-text-primary">
-                Limited Units
+                {t('hero.limitedUnits')}
               </span>
             </motion.div>
 
@@ -107,9 +109,7 @@ export default function Hero() {
             >
               <div className="flex items-center justify-between">
                 <h3 className="text-[15px] lg:text-base font-semibold text-text-primary leading-snug">
-                  Construction
-                  <br />
-                  process
+                  {t('hero.constructionProcess')}
                 </h3>
                 <button
                   className="btn-icon-circle btn-icon-circle-solid w-10 h-10 lg:w-11 lg:h-11"
@@ -123,7 +123,7 @@ export default function Hero() {
               <div className="mt-5">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[12px] font-medium text-text-muted uppercase tracking-[0.06em]">
-                    Complete
+                    {t('hero.complete')}
                   </span>
                   <span className="text-[14px] font-semibold text-text-primary">
                     75%

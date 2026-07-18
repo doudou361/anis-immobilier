@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import ExploreGallery from './components/ExploreGallery'
@@ -6,13 +7,16 @@ import MarketPerformance from './components/MarketPerformance'
 import MarketInsight from './components/MarketInsight'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
+import ConsultationModal from './components/ConsultationModal'
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-bg-base">
-      <Nav />
+      <Nav onOpenModal={() => setIsModalOpen(true)} />
       <main>
-        <Hero />
+        <Hero onOpenModal={() => setIsModalOpen(true)} />
         <ExploreGallery />
         <PopularArea />
         <MarketPerformance />
@@ -20,6 +24,7 @@ function App() {
         <FAQ />
       </main>
       <Footer />
+      <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   )
 }
