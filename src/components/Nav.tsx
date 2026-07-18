@@ -47,7 +47,7 @@ export default function Nav({ onOpenModal }: { onOpenModal?: () => void }) {
               scrolled ? 'text-text-primary' : 'text-white'
             }`}
           >
-            Horizon Grove
+            {t('hero.name')}
           </a>
 
           {/* ── Center Links (desktop ≥ 1024px) ── */}
@@ -87,7 +87,7 @@ export default function Nav({ onOpenModal }: { onOpenModal?: () => void }) {
                   : 'bg-white/10 text-white backdrop-blur-sm border border-white/20'
               }`}
             >
-              {t('nav.consultation')}
+              {t('nav.getConsultation')}
               <ChevronDown className="w-4 h-4" />
             </button>
 
@@ -130,7 +130,7 @@ export default function Nav({ onOpenModal }: { onOpenModal?: () => void }) {
               {/* Header */}
               <div className="flex items-center justify-between px-6 h-[72px] border-b border-border-subtle">
                 <span className="font-[var(--font-heading)] text-lg font-bold text-text-primary tracking-tight">
-                  Horizon Grove
+                  {t('hero.name')}
                 </span>
                 <button
                   onClick={() => setMobileOpen(false)}
